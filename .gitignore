@@ -9,6 +9,9 @@ dist/
 .env
 .env.local
 
+# Maven artifacts and tools
+maven/
+
 # IDE
 .idea/
 .vscode/

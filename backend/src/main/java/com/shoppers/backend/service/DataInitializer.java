@@ -45,7 +45,7 @@ public class DataInitializer implements CommandLineRunner {
       User admin = new User();
       admin.setUsername("admin");
       admin.setEmail("admin@shoppers.com");
-      admin.setPassword(encoder.encode("admin123"));
+      admin.setPassword(encoder.encode("password"));
       admin.setName("Admin User");
       Set<Role> adminRoles = new HashSet<>();
       adminRoles.add(roleRepository.findByName(ERole.ROLE_ADMIN).get());
@@ -57,7 +57,7 @@ public class DataInitializer implements CommandLineRunner {
       User user = new User();
       user.setUsername("user");
       user.setEmail("user@shoppers.com");
-      user.setPassword(encoder.encode("user123"));
+      user.setPassword(encoder.encode("password"));
       user.setName("Regular User");
       Set<Role> userRoles = new HashSet<>();
       userRoles.add(roleRepository.findByName(ERole.ROLE_USER).get());
