@@ -1,0 +1,26 @@
+services:
+  - type: web_service
+    name: shoppers-backend
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: backend/Dockerfile
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://db.tjyvvreioqlpltyjukyc.supabase.co:5432/postgres
+      - key: SPRING_DATASOURCE_USERNAME
+        value: postgres
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: Harsha9000513338
+      - key: SHOOPERS_APP_JWT_SECRET
+        value: YourVeryStrongJwtSecret
+      - key: SHOOPERS_APP_JWT_EXPIRATION_MS
+        value: "86400000"
+      - key: SERVER_PORT
+        value: "8080"
+      - key: OAUTH_GOOGLE_CLIENT_ID
+        value: YOUR_GOOGLE_CLIENT_ID
+      - key: OAUTH_GOOGLE_CLIENT_SECRET
+        value: YOUR_GOOGLE_CLIENT_SECRET
