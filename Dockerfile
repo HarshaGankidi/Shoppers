@@ -1,5 +1,5 @@
 # Single-stage build for backend
-FROM maven:3.9.6-openjdk-17
+FROM maven:3.9.6-eclipse-temurin-17
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
