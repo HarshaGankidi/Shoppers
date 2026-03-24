@@ -25,3 +25,14 @@ services:
         value: YOUR_GOOGLE_CLIENT_ID
       - key: OAUTH_GOOGLE_CLIENT_SECRET
         value: YOUR_GOOGLE_CLIENT_SECRET
+  - type: static_site
+    name: shoppers-frontend
+    env: node
+    plan: free
+    region: oregon
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://shoppers-backend.onrender.com/api
