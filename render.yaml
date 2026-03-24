@@ -25,13 +25,14 @@ services:
         value: YOUR_GOOGLE_CLIENT_ID
       - key: OAUTH_GOOGLE_CLIENT_SECRET
         value: YOUR_GOOGLE_CLIENT_SECRET
-  - type: static_site
+  - type: web
     name: shoppers-frontend
     env: node
     plan: free
     region: oregon
     rootDir: frontend
     buildCommand: npm install && npm run build
+    startCommand: npx serve -s dist -l 3000
     publishPath: dist
     envVars:
       - key: VITE_API_URL
