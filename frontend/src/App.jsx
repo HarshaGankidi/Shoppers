@@ -18,29 +18,33 @@ const ProtectedRoute = ({ children }) => {
 
 const AppContent = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/oauth2/redirect" element={<OAuth2Redirect />} />
-      </Routes>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-fuchsia-900 text-white">
+      <div className="min-h-screen backdrop-blur-sm bg-black/30">
+        <Navbar />
+        <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/oauth2/redirect" element={<OAuth2Redirect />} />
+          </Routes>
+        </div>
+      </div>
     </div>
   );
 };

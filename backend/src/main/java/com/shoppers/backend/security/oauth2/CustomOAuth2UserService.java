@@ -58,6 +58,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
       userRepository.save(user);
     }
 
-    return UserDetailsImpl.build(user);
+    return UserDetailsImpl.build(user, attributes);
   }
 }

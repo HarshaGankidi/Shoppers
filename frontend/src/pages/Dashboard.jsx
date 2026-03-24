@@ -100,13 +100,19 @@ const Dashboard = () => {
     setShowModal(true);
   };
 
-  if (loading) return <div className="text-center mt-10">Loading products...</div>;
+  if (loading)
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center text-cyan-100 text-lg">
+        Loading products...
+      </div>
+    );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Featured Products</h1>
-        {isAdmin() && (
+      <div className="mb-8 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className="text-4xl font-bold tracking-tight text-cyan-50">Featured Products</h1>
+          {isAdmin() && (
           <button
             onClick={openAddModal}
             className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"

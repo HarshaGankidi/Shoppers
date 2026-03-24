@@ -4,20 +4,26 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shoppers.backend.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
-public class UserDetailsImpl implements UserDetails {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class UserDetailsImpl implements UserDetails, OAuth2User {
   private static final long serialVersionUID = 1L;
 
+  @EqualsAndHashCode.Include
   private Long id;
   private String username;
   private String email;
@@ -26,6 +32,7 @@ public class UserDetailsImpl implements UserDetails {
   private String name;
 
   private Collection<? extends GrantedAuthority> authorities;
+  private Map<String, Object> attributes;
 
   public static UserDetailsImpl build(User user) {
     List<GrantedAuthority> authorities = user.getRoles().stream()
@@ -38,7 +45,24 @@ public class UserDetailsImpl implements UserDetails {
         user.getEmail(),
         user.getPassword(),
         user.getName(),
-        authorities);
+        authorities,
+        new HashMap<>());
+  }
+
+  public static UserDetailsImpl build(User user, Map<String, Object> attributes) {
+    UserDetailsImpl userDetails = UserDetailsImpl.build(user);
+    userDetails.setAttributes(attributes);
+    return userDetails;
+  }
+
+  @Override
+  public Map<String, Object> getAttributes() {
+    return attributes;
+  }
+
+  @Override
+  public String getName() {
+    return name;
   }
 
   @Override
@@ -64,13 +88,5 @@ public class UserDetailsImpl implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    UserDetailsImpl user = (UserDetailsImpl) o;
-    return Objects.equals(id, user.id);
   }
 }

@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/products/";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
+const API_URL = `${BASE_URL}/products/`;
 
 const getAllProducts = () => {
   return axios.get(API_URL, { headers: authHeader() });
