@@ -32,8 +32,7 @@ services:
     region: oregon
     rootDir: frontend
     buildCommand: npm install && npm run build
-    startCommand: npx serve -s dist -l 3000
-    publishPath: dist
+    startCommand: npm start
     envVars:
       - key: VITE_API_URL
         value: https://shoppers-backend.onrender.com/api
