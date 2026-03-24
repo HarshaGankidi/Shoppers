@@ -5,7 +5,7 @@ services:
     plan: free
     region: oregon
     rootDir: backend
-    dockerfilePath: Dockerfile
+    dockerfilePath: Dockerfile.simple
     buildCommand: ""
     startCommand: ""
     envVars:
